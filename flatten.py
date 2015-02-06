@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 import csv
+import sys
 from argparse import ArgumentParser
 
 #
@@ -18,15 +19,16 @@ def flatten(the_file, col = 0):
     Flatten the CSV file.
     """
     with open(the_file, 'r') as csvfile:
-        x = csv.reader(csvfile)
-        for row in x:
+        infile = csv.reader(csvfile)
+        outfile = csv.writer(sys.stdout)
+        for row in infile:
             if row[col].find(",") >= 0:
                 things = row[col].split(",")
                 for t in things:
                     row[col]=t
-                    print ', '.join(row)
+                    outfile.writerow(row)
             else:
-                print ', '.join(row)
+                outfile.writerow(row)
 
 if __name__ == "__main__":
     args = parser.parse_args()
