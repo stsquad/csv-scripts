@@ -29,11 +29,11 @@ def widen(the_file, sep, col = 0):
             if pos>0:
                 # split col into col and col + 1
                 left = cell[:pos]
-                right = cell[pos:]
+                right = cell[pos+1:]
             else:
                 # just insert a blank cell after col
                 left = cell
-                rigth = ""
+                right = ""
             # tweak the row
             row[col] = left
             row.insert(col+1, right)
